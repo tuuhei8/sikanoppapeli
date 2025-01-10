@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1>Sikanoppapeli</h1>
+      <div id="pelaajienMaara">
+        <form>
+          <p>Pelaajien määrä:</p>
+          <input type="text" name="pelaajia" id="pelaajia">
+          <button>Vahvista</button>
+        </form>
+        <div>
+          <p id="pitaaOllaNumero"></p>
+        </div>
+        <div>
+          <div id="nimet"></div>
+        </div>
+      </div>
+      <div id="saantoValikko" style="display: none;">
+        <h2>Säännöt</h2>
+        <form id="peliSaannot" name="saannot">
+          <p>Voittoon tarvittavat pisteet:</p>
+          <input type="text" name="pisteMaara" value="100"><br>
+          <div>
+            <p id="pisteVaroitus"></p>
+          </div>
+          <span>Nopat:</span><br>
+          <input type="radio" id="noppa1" name="nopat" value="1">
+          <label for="noppa1">1 noppa</label>
+          <input type="radio" id="noppa2" name="nopat" value="2">
+          <label for="noppa2">2 noppaa</label><br>
+          <div>
+            <p id="noppaVaroitus"></p>
+          </div>
+          <button>Vahvista</button>
+        </form>
+      </div>
+    </div>
+    <p id="testi"></p>
+    <button id="tnappi">testi</button>
+    <script src="main.js"></script>
+  </body>
+</html>
