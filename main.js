@@ -36,10 +36,7 @@ function pelaajatArray(event) {
     let nimiLista = document.querySelectorAll('input[name="nimi"]');
     // Tarkistetaan että nimet on täytetty oikein:
     for (let i = 0; i < nimiLista.length; i++) {
-        if (nimiLista[i].value.length < 1) {
-            ok = false;
-        }
-        if (tarkistusLista.includes(nimiLista[i].value)) {
+        if (nimiLista[i].value.length < 1 || nimiLista[i].value.length > 20 || tarkistusLista.includes(nimiLista[i].value)) {
             ok = false;
         }
         tarkistusLista.push(nimiLista[i].value);
@@ -56,7 +53,7 @@ function pelaajatArray(event) {
         }
         document.getElementById('saantoValikko').style.display = '';
     } else {
-        document.getElementById('nimetVaroitus').innerHTML = 'Jokaisella pelaajalla on oltava uniikki nimi.';
+        document.getElementById('nimetVaroitus').innerHTML = 'Jokaisella pelaajalla on oltava uniikki nimi (pituus 1-20 merkkiä).';
     }
     console.log(lista)
 }
@@ -84,6 +81,7 @@ function peliSaannot(event) {
     }
     if (ok1 == true && ok2 == true) {
         console.log('ok', ok1, ok2, typeof noppienMaara, typeof pisteTavoite)
+        document.getElementById('saantoValikko').style.display = 'none';
     }
 }
 
