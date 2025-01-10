@@ -2,7 +2,7 @@ let pelaajienMaara = document.getElementById('pelaajienMaara');
 pelaajienMaara.addEventListener('submit', pelaajaAsetukset);
 let saannot = document.getElementById('peliSaannot');
 saannot.addEventListener('submit', peliSaannot);
-let lista = [];
+let pelaajaLista = [];
 let pisteTavoite = 0
 let noppienMaara = 0
 
@@ -49,13 +49,13 @@ function pelaajatArray(event) {
             let tiedot = {};
             tiedot.nimi = nimiLista[i].value;
             tiedot.pisteet = 0;
-            lista.push(tiedot);
+            pelaajaLista.push(tiedot);
         }
         document.getElementById('saantoValikko').style.display = '';
     } else {
         document.getElementById('nimetVaroitus').innerHTML = 'Jokaisella pelaajalla on oltava uniikki nimi (pituus 1-20 merkkiä).';
     }
-    console.log(lista)
+    console.log(pelaajaLista)
 }
 
 function peliSaannot(event) {
