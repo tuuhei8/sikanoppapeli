@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <h1>Sikanoppapeli</h1>
-      <div id="pelaajienMaara">
+      <section id="pelaajienMaara">
         <form>
           <p>Pelaajien määrä:</p>
           <input type="text" name="pelaajia" id="pelaajia">
@@ -22,8 +22,8 @@
         <div>
           <div id="nimet"></div>
         </div>
-      </div>
-      <div id="saantoValikko" style="display: none;">
+      </section>
+      <section id="saantoValikko" style="display: none;">
         <h2>Säännöt</h2>
         <form id="peliSaannot" name="saannot">
           <p>Voittoon tarvittavat pisteet:</p>
@@ -41,27 +41,26 @@
           </div>
           <button>Vahvista</button>
         </form>
-      </div>
-      <div id="peli"><!--piilotus tähän-->
-        <div class="col-4">
-          <table class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Nimi</th>
-                <th scope="col">Pisteet</th>
-              </tr>
-            </thead>
-            <tbody id="pistetaulu">
-            </tbody>
-          </table>
-          <div class="col-4">
-
+      </section>
+      <section id="peli"><!--piilotus tähän-->
+        <div class="row">
+          <div class="col-md-8" style="background-color: red;">
+            <p>col1</p>
           </div>
-          <div class="col-4">
-
+          <div class="col-md-4">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Nimi</th>
+                  <th scope="col">Pisteet</th>
+                </tr>
+              </thead>
+              <tbody id="pistetaulu">
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
+      </section>
     </div>
     <p id="testi"></p>
     <button id="tnappi">testi</button>
