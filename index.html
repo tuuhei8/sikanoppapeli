@@ -8,11 +8,18 @@
     <title>Document</title>
   </head>
   <body>
+    <nav class="navbar bg-dark navbar-dark sticky-top border-5 mb-4">
+      <div class="container">
+        <a href="#" class="navbar-brand">Sikanoppa</a>
+        <div class="nav-item navbar-nav ms-auto">
+          <a class="nav-link" href="index.html">Etusivu</a>
+        </div>
+      </div>
+    </nav>
     <div class="container">
-      <h1>Sikanoppapeli</h1>
-      <section id="pelaajienMaara">
+      <div id="pelaajienMaara">
         <form>
-          <p>Pelaajien määrä:</p>
+          <h2>Pelaajien määrä:</h2>
           <input type="text" name="pelaajia" id="pelaajia">
           <button>Vahvista</button>
         </form>
@@ -22,8 +29,8 @@
         <div>
           <div id="nimet"></div>
         </div>
-      </section>
-      <section id="saantoValikko" style="display: none;">
+      </div>
+      <div id="saantoValikko" style="display: none;">
         <h2>Säännöt</h2>
         <form id="peliSaannot" name="saannot">
           <p>Voittoon tarvittavat pisteet:</p>
@@ -41,11 +48,37 @@
           </div>
           <button>Vahvista</button>
         </form>
-      </section>
-      <section id="peli"><!--piilotus tähän-->
+      </div>
+      <div id="peli"><!--piilotus tähän-->
+        <h3 class="text-center m-3">Pelaajan <span id="pelaajaNimi"></span> vuoro</h3>
         <div class="row">
-          <div class="col-md-8" style="background-color: red;">
-            <p>col1</p>
+          <!--pelisisältö tänne-->
+          <div class="col-md-8">
+            <div class="row">
+              <div class="card col">
+                <h5 class="text-center mt-3">Pisteesi tällä vuorolla:</h5>
+                <div class="text-center m-5">
+                  <p><strong class="pisteFontti" id="yhteensa"></strong></p>
+                </div>
+                <h5 class="text-center mt-3">Kaikki pisteesi yhteensä:</h5>
+                <div class="text-center m-5">
+                  <p><strong class="pisteFontti" id="kaikkiYhteensa"></strong></p>
+                </div>
+              </div>
+              <div class="card col">
+                <h5 class="text-center mt-3">Nopat</h5>
+                <div id="noppaKuvat" class="row d-flex justify-content-evenly mt-3">
+                </div>
+                <div class="text-center">
+                  <p><strong>Tulos:</strong></p>
+                  <p><strong id="tulos"></strong></p>
+                </div>
+                <div class="text-center mt-3">
+                  <div><button class="btn btn-secondary m-2" id="heita">Heitä</button></div>
+                  <div><button class="btn btn-secondary mt-3 m-2" id="lopetaVuoro">Lopeta vuoro</button></div>
+                </div>
+            </div>
+            </div>
           </div>
           <div class="col-md-4">
             <table class="table table-striped table-bordered">
@@ -55,15 +88,15 @@
                   <th scope="col">Pisteet</th>
                 </tr>
               </thead>
-              <tbody id="pistetaulu">
+              <tbody id="pisteTaulu">
               </tbody>
             </table>
           </div>
         </div>
-      </section>
+      </div>
+      <p id="testi"></p>
+      <button id="tnappi">testi</button>
+      <script src="main.js"></script>
     </div>
-    <p id="testi"></p>
-    <button id="tnappi">testi</button>
-    <script src="main.js"></script>
   </body>
 </html>
