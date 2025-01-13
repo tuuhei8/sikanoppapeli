@@ -1,8 +1,8 @@
-// Kuuntele pelaajien määrän vahvistusta:
+// Kuuntelee pelaajien määrän vahvistusta:
 let pelaajienMaara = document.getElementById('pelaajienMaara');
 pelaajienMaara.addEventListener('submit', pelaajaAsetukset);
 
-// Kuuntele pelisääntöjen vahvistusta:
+// Kuuntelee pelisääntöjen vahvistusta:
 let saannot = document.getElementById('peliSaannot');
 saannot.addEventListener('submit', peliSaannot);
 
@@ -10,7 +10,7 @@ saannot.addEventListener('submit', peliSaannot);
 let kenenVuoro = document.getElementById('lopetaVuoro');
 kenenVuoro.addEventListener('click', seuraavaVuoro);
 
-// Kuuntele "heitä" nappia:
+// Kuuntelee "heitä" nappia:
 let heita = document.getElementById('heita');
 heita.addEventListener('click', heitto)
 
@@ -20,6 +20,7 @@ let pisteTavoite = 0;
 let noppienMaara = 0;
 let vuoro = 0;
 let tamanVuoronPisteet = 0;
+let tuplat = 0;
 
 //Pelaajien määrän ja nimien asetus:
 function pelaajaAsetukset(event) {
@@ -30,7 +31,7 @@ function pelaajaAsetukset(event) {
         document.getElementById('pitaaOllaNumero').innerHTML = 'Anna numero.';
         return;
     } else {
-        // Kysyy nimet:
+        // Luo kaavion joka kysyy pelaajien nimet:
         document.getElementById('pitaaOllaNumero').innerHTML = '';
         let text = '<form>';
         for (let i = 0; i < pelaajia; i++) {
@@ -38,14 +39,14 @@ function pelaajaAsetukset(event) {
             text += `<p>Pelaajan ${j} nimi:</p>` + '<input type="text" name="nimi">';
         }
         text += '<p id="nimetVaroitus"></p><div><button id="vahvistaNimet">Vahvista</button></div></form>';
-        // Kuuntelee asetettujen nimien vahvistusta ja kutsu funktiota arrayn luomiseksi:
+        // Kuuntelee asetettujen nimien vahvistusta ja kutsuu funktiota arrayn luomiseksi:
         document.getElementById('nimet').innerHTML = text;
         let vahvistaNimet = document.getElementById('vahvistaNimet');
         vahvistaNimet.addEventListener('click', pelaajatArray);
     }
 }
 
-// luo arrayn joka sisältää objektit joissa nimet ja pisteet:
+// Luo arrayn joka sisältää objektit joissa nimet ja pisteet:
 function pelaajatArray(event) {
     event.preventDefault();
     let ok = true;
@@ -98,8 +99,8 @@ function peliSaannot(event) {
         ok2 = true;
     }
     if (ok1 == true && ok2 == true) {
-        console.log('ok', ok1, ok2, typeof noppienMaara, typeof pisteTavoite)
         document.getElementById('saantoValikko').style.display = 'none';
+        document.getElementById('peli').style.display = ''
         uusiVuoro()
     }
 }
@@ -114,10 +115,14 @@ function uusiVuoro() {
     } else {
         noppaKuvat.innerHTML = '<img class="col-sm-3" src="img/tyhja.png" alt="noppa"><img class="col-md-3" src="img/tyhja.png" alt="noppa">'
     }
+    tuplat = 0;
+    document.getElementById('heita').disabled = false;
+    document.getElementById('heita').style.display = '';
+    document.getElementById('ilmoitus').style.visibility = 'hidden';
     document.getElementById('pelaajaNimi').innerHTML = pelaajaLista[vuoro].nimi
     document.getElementById('tulos').innerHTML = 0
     document.getElementById('yhteensa').innerHTML = tamanVuoronPisteet
-    document.getElementById('kaikkiYhteensa').innerHTML = pelaajaLista[vuoro].pisteet
+    document.getElementById('kaikkiYhteensa').innerHTML = `${pelaajaLista[vuoro].pisteet}/${pisteTavoite}`
 }
 
 // Lisää pisteet ja käynnistää seuraavan pelaajan vuoron:
@@ -129,37 +134,96 @@ function seuraavaVuoro() {
         vuoro++
     }
     uusiVuoro()
-    console.log(vuoro,'s', pelaajaLista[0].pisteet)
+    console.log(pelaajaLista, 's')
 }
 
 // Muodostaa pistetaulukon HTML:ään:
 function pisteTaulukko() {
     let text = ''
     for (let i = 0; i < pelaajaLista.length; i++) {
-        text += `<tr><td>${pelaajaLista[i].nimi}</td><td>${pelaajaLista[i].pisteet}</td></tr>`
+        text += `<tr><td>${pelaajaLista[i].nimi}</td><td>${pelaajaLista[i].pisteet}/${pisteTavoite}</td></tr>`
     }
     document.getElementById('pisteTaulu').innerHTML = text
 }
 
 // Suorittaa nopan tai noppien heiton ja laskee tuloksen ja pisteet:
 function heitto() {
-    const luku1 = Math.floor(Math.random() * 6) + 1
-    const luku2 = Math.floor(Math.random() * 6) + 1
-    const noppa1 = 'img/luku' + `${luku1}` + '.png'
-    const noppa2 = 'img/luku' + `${luku2}` + '.png'
+    const luku1 = Math.floor(Math.random() * 5) + 2;
+    const luku2 = Math.floor(Math.random() * 5) + 2;
+    const noppa1 = 'img/luku' + `${luku1}` + '.png';
+    const noppa2 = 'img/luku' + `${luku2}` + '.png';
+    // Yhden nopan version säännöt:
     if (noppienMaara == 1) {
-        document.querySelectorAll('img')[0].setAttribute('src', noppa1)
-        document.getElementById('tulos').innerHTML = luku1
-        tamanVuoronPisteet += luku1
+        document.querySelectorAll('img')[0].setAttribute('src', noppa1);
+        document.getElementById('tulos').innerHTML = luku1;
+        if (luku1 == 1) {
+            tamanVuoronPisteet = 0;
+            document.getElementById('heita').disabled = true;
+            document.getElementById('ilmoitus').innerHTML = 'Heitit ykkösen, menetit tämän vuoron pisteet.';
+            document.getElementById('ilmoitus').style.visibility = '';
+        } else {
+            tamanVuoronPisteet += luku1;
+        }
+    // Kahden nopan version säännöt:
     } else {
-        document.querySelectorAll('img')[0].setAttribute('src', noppa1)
-        document.querySelectorAll('img')[1].setAttribute('src', noppa2)
-        let tulo = luku1 + luku2
-        document.getElementById('tulos').innerHTML = tulo
-        tamanVuoronPisteet += tulo
+        document.querySelectorAll('img')[0].setAttribute('src', noppa1);
+        document.querySelectorAll('img')[1].setAttribute('src', noppa2);
+        let tulo = luku1 + luku2;
+        document.getElementById('tulos').innerHTML = tulo; 
+        if (luku1 === 1 && luku2 === 1) {
+            tuplat++;
+            document.getElementById('ilmoitus').innerHTML = 'Heitit ykkösparin, 25 pistettä!';
+            document.getElementById('ilmoitus').style.visibility = '';
+            if (tuplat === 3) {
+                kolmeTuplaa();
+            } else {
+                tamanVuoronPisteet += 25;
+            }
+        } else if (luku1 === luku2) {
+            tuplat++;
+            document.getElementById('ilmoitus').innerHTML = 'Heitit parin, tuplapisteet ' + `${tulo * 2}` + '!';
+            document.getElementById('ilmoitus').style.visibility = '';
+            if (tuplat === 3) {
+                kolmeTuplaa();
+            } else {
+                tamanVuoronPisteet += tulo * 2;
+            }
+        } else if (luku1 === 1 || luku2 === 1) {
+            tamanVuoronPisteet = 0;
+            document.getElementById('heita').disabled = true;
+            document.getElementById('ilmoitus').innerHTML = 'Heitit ykkösen, menetit tämän vuoron pisteet.';
+            document.getElementById('ilmoitus').style.visibility = '';
+        } else {
+            document.getElementById('ilmoitus').style.visibility = 'hidden';
+            tuplat = 0;
+            tamanVuoronPisteet += tulo;
+        }
     }
-    document.getElementById('yhteensa').innerHTML = tamanVuoronPisteet
-    document.getElementById('kaikkiYhteensa').innerHTML = tamanVuoronPisteet + pelaajaLista[vuoro].pisteet
+    let kaikkiYhteensa = tamanVuoronPisteet + pelaajaLista[vuoro].pisteet;
+    // Luvut käyttöliittymään:
+    document.getElementById('yhteensa').innerHTML = tamanVuoronPisteet;
+    document.getElementById('kaikkiYhteensa').innerHTML = `${kaikkiYhteensa}/${pisteTavoite}`;
+     // Voiton tarkistus:
+     if (kaikkiYhteensa >= pisteTavoite) {
+        voittaja()
+    }
+}
+
+// Käytetään kun pelaaja saa kolme tuplaa peräkkäin:
+function kolmeTuplaa() {
+        tamanVuoronPisteet = 0;
+        tuplat = 0;
+        document.getElementById('heita').disabled = true;
+        document.getElementById('ilmoitus').innerHTML = 'Heitit kolme tuplaa peräkkäin, menetit tämän vuoron pisteet.';
+}
+
+function voittaja() {
+    pelaajaLista[vuoro].pisteet =  pelaajaLista[vuoro].pisteet + tamanVuoronPisteet
+    pisteTaulukko()
+    document.getElementById('ilmoitus').innerHTML = 'Olet voittaja!'
+    document.getElementById('t').style.display = 'none'
+    document.getElementById('pelinLopetus').style.display = ''
+    console.log(pelaajaLista, 'v')
 }
 
 /*
