@@ -24,7 +24,7 @@
           <button>Vahvista</button>
         </form>
         <div>
-          <p id="pitaaOllaNumero"></p>
+          <p class="text-danger" id="pitaaOllaNumero"></p>
         </div>
         <div>
           <div id="nimet"></div>
@@ -36,7 +36,7 @@
           <p>Voittoon tarvittavat pisteet:</p>
           <input type="text" name="pisteMaara" value="100"><br>
           <div>
-            <p id="pisteVaroitus"></p>
+            <p class="text-danger" id="pisteVaroitus"></p>
           </div>
           <span>Nopat:</span><br>
           <input type="radio" id="noppa1" name="nopat" value="1">
@@ -44,13 +44,13 @@
           <input type="radio" id="noppa2" name="nopat" value="2">
           <label for="noppa2">2 noppaa</label><br>
           <div>
-            <p id="noppaVaroitus"></p>
+            <p class="text-danger" id="noppaVaroitus"></p>
           </div>
           <button>Vahvista</button>
         </form>
       </div>
       <div id="peli" style="display: none;">
-        <h3 class="text-center m-3">Pelaajan <span id="pelaajaNimi"></span> vuoro</h3>
+        <h3 class="text-center m-3">Pelaajan <strong><span class="text-primary" id="pelaajaNimi"></span></strong> vuoro:</h3>
         <div class="row">
           <div class="col-md-8">
             <div class="row mb-4">
@@ -75,7 +75,7 @@
                 <div class="text-center mt-3">
                   <p style="visibility: hidden; padding: 10px;" id="ilmoitus">tyhjä</p>
                   <div id="t">
-                    <div><button class="btn btn-secondary m-2" id="heita">Heitä</button></div>
+                    <div><button class="btn btn-primary m-2" id="heita">Heitä</button></div>
                     <div><button class="btn btn-secondary mt-3 m-2" id="lopetaVuoro">Lopeta vuoro</button></div>
                   </div>
                   <div class="text-center">

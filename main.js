@@ -38,7 +38,7 @@ function pelaajaAsetukset(event) {
             let j = i + 1;
             text += `<p>Pelaajan ${j} nimi:</p>` + '<input type="text" name="nimi">';
         }
-        text += '<p id="nimetVaroitus"></p><div><button id="vahvistaNimet">Vahvista</button></div></form>';
+        text += '<p class="text-danger" id="nimetVaroitus"></p><div><button id="vahvistaNimet">Vahvista</button></div></form>';
         // Kuuntelee asetettujen nimien vahvistusta ja kutsuu funktiota arrayn luomiseksi:
         document.getElementById('nimet').innerHTML = text;
         let vahvistaNimet = document.getElementById('vahvistaNimet');
@@ -74,7 +74,6 @@ function pelaajatArray(event) {
     } else {
         document.getElementById('nimetVaroitus').innerHTML = 'Jokaisella pelaajalla on oltava uniikki nimi (pituus 1-20 merkkiä).';
     }
-    console.log(pelaajaLista)
 }
 
 // Tarkistaa voittoon tarvittavan pistemäärän ja käytettävien noppien määrän asetukset:
@@ -134,7 +133,6 @@ function seuraavaVuoro() {
         vuoro++
     }
     uusiVuoro()
-    console.log(pelaajaLista, 's')
 }
 
 // Muodostaa pistetaulukon HTML:ään:
@@ -148,8 +146,8 @@ function pisteTaulukko() {
 
 // Suorittaa nopan tai noppien heiton ja laskee tuloksen ja pisteet:
 function heitto() {
-    const luku1 = Math.floor(Math.random() * 5) + 2;
-    const luku2 = Math.floor(Math.random() * 5) + 2;
+    const luku1 = Math.floor(Math.random() * 6) + 1;
+    const luku2 = Math.floor(Math.random() * 6) + 1;
     const noppa1 = 'img/luku' + `${luku1}` + '.png';
     const noppa2 = 'img/luku' + `${luku2}` + '.png';
     // Yhden nopan version säännöt:
@@ -172,20 +170,22 @@ function heitto() {
         document.getElementById('tulos').innerHTML = tulo; 
         if (luku1 === 1 && luku2 === 1) {
             tuplat++;
-            document.getElementById('ilmoitus').innerHTML = 'Heitit ykkösparin, 25 pistettä!';
-            document.getElementById('ilmoitus').style.visibility = '';
             if (tuplat === 3) {
                 kolmeTuplaa();
             } else {
+                document.getElementById('ilmoitus').innerHTML = 'Heitit ykkösparin, 25 pistettä!';
+                document.getElementById('ilmoitus').style.visibility = '';
+                document.getElementById('tulos').innerHTML = 25;
                 tamanVuoronPisteet += 25;
             }
         } else if (luku1 === luku2) {
             tuplat++;
-            document.getElementById('ilmoitus').innerHTML = 'Heitit parin, tuplapisteet ' + `${tulo * 2}` + '!';
-            document.getElementById('ilmoitus').style.visibility = '';
             if (tuplat === 3) {
                 kolmeTuplaa();
             } else {
+                document.getElementById('ilmoitus').innerHTML = 'Heitit parin, tuplapisteet!';
+                document.getElementById('ilmoitus').style.visibility = '';
+                document.getElementById('tulos').innerHTML = tulo * 2;
                 tamanVuoronPisteet += tulo * 2;
             }
         } else if (luku1 === 1 || luku2 === 1) {
@@ -212,9 +212,9 @@ function heitto() {
 // Käytetään kun pelaaja saa kolme tuplaa peräkkäin:
 function kolmeTuplaa() {
         tamanVuoronPisteet = 0;
-        tuplat = 0;
         document.getElementById('heita').disabled = true;
         document.getElementById('ilmoitus').innerHTML = 'Heitit kolme tuplaa peräkkäin, menetit tämän vuoron pisteet.';
+        document.getElementById('ilmoitus').style.visibility = '';
 }
 
 function voittaja() {
@@ -223,17 +223,4 @@ function voittaja() {
     document.getElementById('ilmoitus').innerHTML = 'Olet voittaja!'
     document.getElementById('t').style.display = 'none'
     document.getElementById('pelinLopetus').style.display = ''
-    console.log(pelaajaLista, 'v')
 }
-
-/*
-let objekti = {}
-let array = [0]
-objekti.nimi = 'tuukka'
-objekti.pisteet = 0
-objekti.pisteet = array.reduce(funktio)
-function funktio(t, v) {
-    return t + v
-}
-console.log(objekti.pisteet)
-*/
