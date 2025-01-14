@@ -26,10 +26,9 @@ let tuplat = 0;
 function pelaajaAsetukset(event) {
     event.preventDefault();
     let pelaajia = document.getElementById('pelaajia').value;
-    // Tarkistaa että pelaajien määräksi on annettu numero:
-    if (isNaN(pelaajia) || pelaajia.length < 1) {
-        document.getElementById('pitaaOllaNumero').innerHTML = 'Anna numero.';
-        return;
+    // Tarkistaa että pelaajien määräksi on annettu numero joka on vähintään 2:
+    if (isNaN(pelaajia) || pelaajia.length < 1 || pelaajia < 2) {
+        document.getElementById('pitaaOllaNumero').innerHTML = 'Anna numero (vähintään 2).';
     } else {
         // Luo kaavion joka kysyy pelaajien nimet:
         document.getElementById('pitaaOllaNumero').innerHTML = '';
