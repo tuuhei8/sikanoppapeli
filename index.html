@@ -53,36 +53,32 @@
       <div id="peli" style="display: none;">
         <h3 class="text-center m-3">Pelaajan <strong><span class="text-primary" id="pelaajaNimi"></span></strong> vuoro:</h3>
         <div class="row">
-          <div class="col-md-8">
-            <div class="row mb-4">
-              <div class="card col">
-                <h5 class="text-center mt-3">Pisteesi tällä vuorolla:</h5>
-                <div class="text-center m-5">
-                  <p><strong class="pisteFontti" id="yhteensa"></strong></p>
-                </div>
-                <h5 class="text-center mt-3">Kaikki pisteesi yhteensä:</h5>
-                <div class="text-center m-5">
-                  <p><strong class="pisteFontti" id="kaikkiYhteensa"></strong></p>
-                </div>
+          <div class="col-md-4">
+            <h5 class="text-center mt-3">Pisteesi tällä vuorolla:</h5>
+            <div class="text-center m-5">
+              <p><strong class="pisteFontti" id="yhteensa"></strong></p>
+            </div>
+            <h5 class="text-center mt-3">Kaikki pisteesi yhteensä:</h5>
+            <div class="text-center m-5">
+              <p><strong class="pisteFontti" id="kaikkiYhteensa"></strong></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5 class="text-center mt-3">Nopat</h5>
+            <div id="noppaKuvat" class="row d-flex justify-content-evenly mt-3">
+            </div>
+            <div class="text-center">
+              <p><strong>Tulos:</strong></p>
+              <p><strong id="tulos"></strong></p>
+            </div>
+            <div class="text-center mt-3">
+              <p class="text-warning bg-dark" style="visibility: hidden; padding: 10px;" id="ilmoitus">tyhjä</p>
+              <div id="peliNapit">
+                <div><button class="btn btn-primary m-2" id="heita">Heitä</button></div>
+                <div><button class="btn btn-secondary mt-3 m-2" id="lopetaVuoro">Lopeta vuoro</button></div>
               </div>
-              <div class="card col">
-                <h5 class="text-center mt-3">Nopat</h5>
-                <div id="noppaKuvat" class="row d-flex justify-content-evenly mt-3">
-                </div>
-                <div class="text-center">
-                  <p><strong>Tulos:</strong></p>
-                  <p><strong id="tulos"></strong></p>
-                </div>
-                <div class="text-center mt-3">
-                  <p class="text-warning bg-dark" style="visibility: hidden; padding: 10px;" id="ilmoitus">tyhjä</p>
-                  <div id="peliNapit">
-                    <div><button class="btn btn-primary m-2" id="heita">Heitä</button></div>
-                    <div><button class="btn btn-secondary mt-3 m-2" id="lopetaVuoro">Lopeta vuoro</button></div>
-                  </div>
-                  <div class="text-center">
-                    <a href="index.html" class="btn btn-info" id="pelinLopetus" style="display: none;">Lopeta peli</a>
-                  </div>
-                </div>
+              <div class="text-center">
+                <a href="index.html" class="btn btn-info" id="pelinLopetus" style="display: none;">Lopeta peli</a>
               </div>
             </div>
           </div>
