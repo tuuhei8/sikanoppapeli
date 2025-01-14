@@ -216,6 +216,7 @@ function kolmeTuplaa() {
         document.getElementById('ilmoitus').style.visibility = '';
 }
 
+// Kutsutaan kun joku pelaajista saavuttaa voittoon tarvittavan pistemäärän:
 function voittaja() {
     pelaajaLista[vuoro].pisteet =  pelaajaLista[vuoro].pisteet + tamanVuoronPisteet
     pisteTaulukko()
