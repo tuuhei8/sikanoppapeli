@@ -221,6 +221,6 @@ function voittaja() {
     pelaajaLista[vuoro].pisteet =  pelaajaLista[vuoro].pisteet + tamanVuoronPisteet
     pisteTaulukko()
     document.getElementById('ilmoitus').innerHTML = 'Olet voittaja!'
-    document.getElementById('t').style.display = 'none'
+    document.getElementById('peliNapit').style.display = 'none'
     document.getElementById('pelinLopetus').style.display = ''
 }
