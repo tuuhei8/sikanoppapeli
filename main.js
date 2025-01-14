@@ -28,11 +28,11 @@ function pelaajaAsetukset(event) {
     let pelaajia = document.getElementById('pelaajia').value;
     // Tarkistaa että pelaajien määräksi on annettu numero joka on vähintään 2:
     if (isNaN(pelaajia) || pelaajia.length < 1 || pelaajia < 2) {
-        document.getElementById('pitaaOllaNumero').innerHTML = 'Anna numero (vähintään 2).';
+        document.getElementById('pitaaOllaNumero').innerHTML = 'Kirjoita numero joka on vähintään 2.';
     } else {
         // Luo kaavion joka kysyy pelaajien nimet:
         document.getElementById('pitaaOllaNumero').innerHTML = '';
-        let text = '<form>';
+        let text = '<p>Nimen pituuden on oltava 1-20 merkkiä. Samaa nimeä ei voi käyttää kahdesti.</p><form>';
         for (let i = 0; i < pelaajia; i++) {
             let j = i + 1;
             text += `<p>Pelaajan ${j} nimi:</p>` + '<input type="text" name="nimi">';
