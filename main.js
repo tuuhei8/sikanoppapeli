@@ -111,11 +111,10 @@ function uusiVuoro() {
     if (noppienMaara == 1) {
         noppaKuvat.innerHTML = '<img class="col-sm-3" src="img/tyhja.png" alt="noppa">'
     } else {
-        noppaKuvat.innerHTML = '<img class="col-sm-3" src="img/tyhja.png" alt="noppa"><img class="col-md-3" src="img/tyhja.png" alt="noppa">'
+        noppaKuvat.innerHTML = '<img class="col-sm-3" src="img/tyhja.png" alt="noppa"><img class="col-md-3" src="img/tyhja.png" alt="noppa2">'
     }
     tuplat = 0;
     document.getElementById('heita').disabled = false;
-    document.getElementById('heita').style.display = '';
     document.getElementById('ilmoitus').style.visibility = 'hidden';
     document.getElementById('pelaajaNimi').innerHTML = pelaajaLista[vuoro].nimi
     document.getElementById('tulos').innerHTML = 0
@@ -146,12 +145,11 @@ function pisteTaulukko() {
 // Suorittaa nopan tai noppien heiton ja laskee tuloksen ja pisteet:
 function heitto() {
     const luku1 = Math.floor(Math.random() * 6) + 1;
-    const luku2 = Math.floor(Math.random() * 6) + 1;
     const noppa1 = 'img/luku' + `${luku1}` + '.png';
-    const noppa2 = 'img/luku' + `${luku2}` + '.png';
     // Yhden nopan version säännöt:
     if (noppienMaara == 1) {
         document.querySelectorAll('img')[0].setAttribute('src', noppa1);
+        document.querySelectorAll('img')[0].setAttribute('alt', `Nopan luku${luku1}`);
         document.getElementById('tulos').innerHTML = luku1;
         if (luku1 == 1) {
             tamanVuoronPisteet = 0;
@@ -163,8 +161,12 @@ function heitto() {
         }
     // Kahden nopan version säännöt:
     } else {
+        const luku2 = Math.floor(Math.random() * 6) + 1;
+        const noppa2 = 'img/luku' + `${luku2}` + '.png';
         document.querySelectorAll('img')[0].setAttribute('src', noppa1);
         document.querySelectorAll('img')[1].setAttribute('src', noppa2);
+        document.querySelectorAll('img')[0].setAttribute('alt', `Nopan 1 luku${luku1}`);
+        document.querySelectorAll('img')[1].setAttribute('alt', `Nopan 2 luku${luku2}`);
         let tulo = luku1 + luku2;
         document.getElementById('tulos').innerHTML = tulo; 
         if (luku1 === 1 && luku2 === 1) {
@@ -221,6 +223,7 @@ function voittaja() {
     pelaajaLista[vuoro].pisteet =  pelaajaLista[vuoro].pisteet + tamanVuoronPisteet
     pisteTaulukko()
     document.getElementById('ilmoitus').innerHTML = 'Olet voittaja!'
+    document.getElementById('ilmoitus').style.visibility = '';
     document.getElementById('peliNapit').style.display = 'none'
     document.getElementById('pelinLopetus').style.display = ''
 }
